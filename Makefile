@@ -42,7 +42,7 @@ clean:
 
 .PHONY : tar
 tar: clean
-	tar -zcvf $(PROGRAM_NAME).tar.gz ../Aequus
+	tar -zcvf $(PROGRAM_NAME).tar.gz ../Text
 
 .PHONY : log
 log:

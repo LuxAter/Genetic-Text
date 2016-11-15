@@ -18,6 +18,7 @@ std::vector<Chromosome> population;
 }
 
 double genetic::RunAlgorithm(std::string gova, int popsize, double mutate) {
+  induco::Timer(true);
   if (popsize != -1) {
     populationsize = popsize;
   }
@@ -45,12 +46,6 @@ double genetic::RunAlgorithm(std::string gova, int popsize, double mutate) {
     evolve::Sort();
     evolve::CumulateFitness();
     display::DrawStr(0);
-    // std::cout << "\n";
-    for (int i = 0; i < population.size(); i++) {
-      // display::DrawStr(i);
-      // std::cout << ":" << population[i].fitness << ":"
-      //          << population[i].cumulativefitness << "\n";
-    }
     if (population[0].str == goalvalue) {
       running = false;
       break;
@@ -58,22 +53,17 @@ double genetic::RunAlgorithm(std::string gova, int popsize, double mutate) {
     evolve::Killoff();
     evolve::Reproduce();
     evolve::Mutate();
-    // induco::Line(10);
     genoration++;
   }
   std::cout << "\n";
+  double elapsedtime = induco::Timer(false);
   if (population[0].str == goalvalue) {
     induco::Break();
-    std::cout << "Solved in " << genoration << "\n";
-    display::DrawStr(0);
-  } else {
-    induco::Break();
-    std::cout << "Failed to solve in " << genoration << "\n";
-    std::cout << "Closest value to [" << goalvalue << "]:\n";
+    std::cout << "GENORATIONS: " << genoration << "\n";
+    std::cout << "TIME: " << induco::DisplayTime(elapsedtime, true) << "\n";
     display::DrawStr(0);
   }
   Clean();
-  return (0.0);
 }
 
 double genetic::drand() { return (fabs((double)rand() / (RAND_MAX + 1))); }

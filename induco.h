@@ -5,6 +5,7 @@
 #include <vector>
 namespace induco {
 extern struct termios t;
+extern clock_t start;
 int Menu(std::string title, std::vector<std::string> options);
 double GetValue(std::string value);
 std::string SGetValue(std::string value);
@@ -13,5 +14,6 @@ bool Pause();
 void Line(int size);
 void Break();
 void Echo(bool setting);
+double Timer(bool start = false);
 }
 #endif

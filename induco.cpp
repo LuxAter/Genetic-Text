@@ -159,3 +159,14 @@ void induco::Echo(bool setting) {
     tcsetattr(STDIN_FILENO, TCSANOW, &t);
   }
 }
+
+double induco::Timer(bool start) {
+  if (start == true) {
+    start = clock();
+  } else if (start == false) {
+    clock_t end = clock();
+    double elapsedtime = (end - start) / (double)CLOCKS_PER_SEC;
+    return (elapsedtime);
+  }
+  return (0);
+}

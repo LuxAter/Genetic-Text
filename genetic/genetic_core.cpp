@@ -28,14 +28,6 @@ double genetic::RunAlgorithm(std::string gova, int popsize, double mutate) {
     mutationrate = mutate;
   }
   bool running = true;
-  /*for (int i = 0; i < goalvalue.size(); i++) {
-    if (goalvalue[i] == '.') {
-      goalvalue[i] = '`';
-    }
-    if (goalvalue[i] == ' ') {
-      goalvalue[i] = '_';
-    }
-  }*/
   display::DrawStr("[" + goalvalue + "]");
   std::cout << "\n";
   evolve::GenorateBasePopulation();

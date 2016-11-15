@@ -33,7 +33,10 @@ void genetic::evolve::CalculateFitness() {
     population[i].fitness = 0;
     for (int j = 0; j < population[i].str.size(); j++) {
       if (population[i].str[j] == goalvalue[j]) {
-        population[i].fitness += 10;
+        population[i].fitness += 1;
+      } else {
+        // population[i].fitness +=
+        //    (1 / fabs(int(goalvalue[i]) - int(population[i].str[j])));
       }
     }
   }
@@ -92,6 +95,19 @@ void genetic::evolve::Mutate() {
   for (int i = 0; i < population.size(); i++) {
     for (int j = 0; j < chromosomelength; j++) {
       if (drand() < mutationrate) {
+        /*int value = int(population[i].str[j]);
+        if (drand() > 0.5) {
+          value++;
+        } else {
+          value--;
+        }
+        if (value > MAX) {
+          value = MIN;
+        }
+        if (value < MIN) {
+          value = MAX;
+        }
+        population[i].str[j] = char(value);*/
         population[i].str[j] = char((rand() % (MAX - MIN)) + MIN);
       }
     }

@@ -17,8 +17,8 @@ extern std::string goalvalue;
 // Population of strings
 extern std::vector<Chromosome> population;
 // Core genetic population loop
-double RunAlgorithm(std::string gova = "", int popsize = -1,
-                    double mutate = -1);
+double RunAlgorithm(std::string gova = "", int popsize = -1, double mutate = -1,
+                    bool display = true);
 // Genorates a random double from 0-1
 double drand();
 // Sets all namespace values to defaults of 0

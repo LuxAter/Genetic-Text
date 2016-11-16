@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <sys/ioctl.h>
 #include <sys/types.h>
 #include <termios.h>
 #include <unistd.h>
@@ -9,6 +10,7 @@
 
 namespace induco {
 struct termios t;
+clock_t start;
 }
 
 int induco::Menu(std::string title, std::vector<std::string> options) {
@@ -50,9 +52,10 @@ double induco::GetValue(std::string value) {
 }
 
 std::string induco::SGetValue(std::string value) {
-  std::cout << "Please Enter Value for \"" + value + "\": ";
+  std::cout << "Please Enter Value for \"" + value + "\":\n";
   std::string input = "";
-  std::cin >> input;
+  getline(std::cin, input);
+  getline(std::cin, input);
   return (input);
 }
 
@@ -160,13 +163,25 @@ void induco::Echo(bool setting) {
   }
 }
 
-double induco::Timer(bool start) {
-  if (start == true) {
+double induco::Timer(bool startb) {
+  if (startb == true) {
     start = clock();
-  } else if (start == false) {
+  } else if (startb == false) {
     clock_t end = clock();
     double elapsedtime = (end - start) / (double)CLOCKS_PER_SEC;
     return (elapsedtime);
   }
   return (0);
+}
+
+int induco::GetSize(bool height) {
+  struct winsize size;
+  ioctl(STDOUT_FILENO, TIOCGWINSZ, &size);
+  int w = (int)size.ws_col;
+  int h = (int)size.ws_row;
+  if (height == true) {
+    return (h);
+  } else {
+    return (w);
+  }
 }

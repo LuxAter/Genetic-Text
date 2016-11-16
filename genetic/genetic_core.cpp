@@ -17,8 +17,10 @@ std::string goalvalue = "";
 std::vector<Chromosome> population;
 }
 
-double genetic::RunAlgorithm(std::string gova, int popsize, double mutate) {
+double genetic::RunAlgorithm(std::string gova, int popsize, double mutate,
+                             bool display) {
   induco::Timer(true);
+  Clean();
   if (popsize != -1) {
     populationsize = popsize;
   }
@@ -28,16 +30,23 @@ double genetic::RunAlgorithm(std::string gova, int popsize, double mutate) {
     mutationrate = mutate;
   }
   bool running = true;
-  display::DrawStr("[" + goalvalue + "]");
-  std::cout << "\n";
+  if (display == true) {
+    display::DrawStr("[" + goalvalue + "]");
+    std::cout << "\n";
+  }
   evolve::GenorateBasePopulation();
   genoration = 0;
   while (running == true) {
+    if (induco::Timer() >= 120 || genoration >= 1000000) {
+      running = false;
+    }
     evolve::CalculateFitness();
     evolve::SumFitness();
     evolve::Sort();
     evolve::CumulateFitness();
-    display::DrawStr(0);
+    if (display == true) {
+      display::DrawStr(0);
+    }
     if (population[0].str == goalvalue) {
       running = false;
       break;
@@ -47,15 +56,16 @@ double genetic::RunAlgorithm(std::string gova, int popsize, double mutate) {
     evolve::Mutate();
     genoration++;
   }
-  std::cout << "\n";
+  if (display == true) {
+    std::cout << "\n";
+  }
   double elapsedtime = induco::Timer(false);
-  if (population[0].str == goalvalue) {
-    induco::Break();
+  if (population[0].str == goalvalue && display == true) {
     std::cout << "GENORATIONS: " << genoration << "\n";
     std::cout << "TIME: " << induco::DisplayTime(elapsedtime, true) << "\n";
     display::DrawStr(0);
   }
-  Clean();
+  return (elapsedtime);
 }
 
 double genetic::drand() { return (fabs((double)rand() / (RAND_MAX + 1))); }

@@ -25,6 +25,8 @@ void Break();
 // Toggles terminal echoing
 void Echo(bool setting);
 // Starts or stops a timmer with accuracy to us
-double Timer(bool start = false);
+double Timer(bool startb = false);
+// Returns terminal width and height in characters
+int GetSize(bool height = false);
 }
 #endif

@@ -3,7 +3,6 @@
 #include "induco.h"
 #include <fstream>
 #include <iostream>
-#include <pessum.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
@@ -25,7 +24,7 @@ int main(int argc, char *argv[]) {
       induco::Break();
       int startn = induco::GetValue("n-0");
       int endn = induco::GetValue("n-f");
-      for (int i = startn; i < endn; i++) {
+      for (int i = startn; i < endn + 1; i++) {
         quote = "";
         for (int j = 0; j < i; j++) {
           quote += char((rand() % (122 - 32)) + 32);

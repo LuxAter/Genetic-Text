@@ -3,7 +3,7 @@ OBJ_FILES = $(notdir $(CPP_FILES:.cpp=.o))
 TOTAL_OBJ_FILES = $(wildcard */*.o) $(wildcard */*/*.o) $(wildcard */*/*/*.o)
 CC = g++
 COMPILER_FLAGS = -MMD -std=c++11 -w -c
-LINKER_FLAGS = -lpessum
+LINKER_FLAGS = 
 PROGRAM_NAME = text
 
 all: subsystem top_obj $(PROGRAM_NAME)

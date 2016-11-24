@@ -16,7 +16,7 @@ void genetic::display::DrawStr(int pointer) {
     std::cout << "...";
   } else {
     std::cout << population[pointer].str;
-  }
+  }	
 }
 
 void genetic::display::DrawStr(std::string str) {

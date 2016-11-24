@@ -11,7 +11,7 @@
 int main(int argc, char *argv[]) {
   srand(time(NULL));
   bool running = true;
-  double mutation = 0.005;
+  double mutation = 0.01;
   int population = 100, input = 0;
   std::string quote = "";
   std::vector<std::string> options = {

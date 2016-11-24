@@ -12,7 +12,7 @@
 
 namespace genetic {
 int populationsize = 100, chromosomelength = 10, genoration = 0;
-double mutationrate = 0.001;
+double mutationrate = 0.05;
 std::string goalvalue = "";
 std::vector<Chromosome> population;
 }
